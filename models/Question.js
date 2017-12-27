@@ -30,11 +30,13 @@ class Question{
   }
  static Find(id){
    return new Promise(function(resolve){
-     const question = new Question()
+     db.get(sql, [id], function(err, result){ 
+     const question = new Question(result.content)
+     question.id = result.id
    resolve(question)
  })
  }
-
+}
 }
 
 module.exports = Question;
